@@ -220,7 +220,7 @@ $.markLocation = function(_event) {
 		latitude: points.current.latitude,
 		longitude: points.current.longitude,
 		subtitle: (Math.round(points.current.latitude * 100000) / 100000) + ", " + (Math.round(points.current.longitude * 100000) / 100000),
-		pincolor: Ti.Map.ANNOTATION_GREEN
+		image: "/images/pinStart.png"
 	});
 	
 	var annotationWaypoint = Ti.Map.createAnnotation({
@@ -228,11 +228,11 @@ $.markLocation = function(_event) {
 		latitude: points.destination.latitude,
 		longitude: points.destination.longitude,
 		subtitle: (Math.round(points.destination.latitude * 100000) / 100000) + ", " + (Math.round(points.destination.longitude * 100000) / 100000),
-		pincolor: Ti.Map.ANNOTATION_RED
+		image: "/images/pinWaypoint.png"
 	});
 	
 	var vectorRoute = {
-		color: "#007700",
+		color: "#00FF00",
 		name: "Vector " + ($.waypointCount + 1),
 		width: "3dp",
 		points: [ points.current, points.vector ]
@@ -301,7 +301,7 @@ $.determineELT = function() {
 			latitude: waypoint.latitude,
 			longitude: waypoint.longitude,
 			subtitle: (Math.round(waypoint.latitude * 100000) / 100000) + ", " + (Math.round(waypoint.longitude * 100000) / 100000),
-			pincolor: Ti.Map.ANNOTATION_PURPLE
+			image: "/images/pinELT.png"
 		});
 		
 		$.map.addAnnotation(annotationELT);
