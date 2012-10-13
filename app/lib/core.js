@@ -39,8 +39,8 @@ var APP = {
 	createDatabase: function() {
 		var db = Ti.Database.open("SARA");
 
-		db.execute("DELETE FROM marks");
 		db.execute("CREATE TABLE IF NOT EXISTS marks (latitude VARCHAR, longitude VARCHAR, bearing VARCHAR, timestamp VARCHAR, precision INTEGER);");
+		db.execute("DELETE FROM marks");
 		
 		db.close();	
 	},

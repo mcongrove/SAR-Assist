@@ -9,7 +9,7 @@
  *		US:
  *			Register: http://www.globaldenso.com/en/products/aftermarket/navibridge/index.html
  *
- * All coordinates must be passed to NaviBridge as a decimal. NaviBridge uses the WGS84 datium with the following range limitations:
+ * All coordinates must be passed to NaviBridge as a decimal. NaviBridge uses the WGS84 datum with the following range limitations:
  *		-90.0 < lat < 90.0
  *		-180.0 <= lng <= 180.0
  */
@@ -19,7 +19,7 @@ var NAVIBRIDGE = (function() {
 
 	/** Do not modify these values */
 	var API = {
-		Version: "1.4",
+		Version: "1.3",
 		Enabled: true,
 		URLBase: "navicon://",
 		Install: {
@@ -155,9 +155,7 @@ var NAVIBRIDGE = (function() {
 
 					return false;
 				} else {
-					var appURL = API.URLBase + "setPOI?";
-
-					appURL += API.appendURL("ver", API.Version);
+					var appURL = API.URLBase + "setPOI?ver=" + API.Version;
 
 					if(API.isDefined(_poi.lat) && API.isDefined(_poi.lon)) {
 						appURL += API.appendURL("ll", _poi.lat + "," + _poi.lon);
@@ -220,9 +218,8 @@ var NAVIBRIDGE = (function() {
 
 					var length = _object.poi.length > 5 ? 5 : _object.poi.length;
 
-					var appURL = API.URLBase + "setMultiPOI?";
+					var appURL = API.URLBase + "setMultiPOI?ver=" + API.Version;
 
-					appURL += API.appendURL("ver", API.Version);
 					appURL += API.appendURL("appName", API.ApplicationId);
 
 					for(var i = 0; i < length; i++) {

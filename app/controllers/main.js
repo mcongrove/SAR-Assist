@@ -192,10 +192,11 @@ $.handleDistanceClick = function(_event) {
  * Handles a click on an annotation
  */
 $.handleAnnotationClick = function(_event) {
-	if(_event.clicksource === "pin") {
+	if(_event.clicksource === "rightButton") {
 		NAVIBRIDGE.addPOI({
-			lat: _event.latitude,
-			lon: _event.longitude
+			lat: _event.annotation.latitude,
+			lon: _event.annotation.longitude,
+			title: _event.annotation.title
 		});
 	}
 };
@@ -220,7 +221,8 @@ $.markLocation = function(_event) {
 		latitude: points.current.latitude,
 		longitude: points.current.longitude,
 		subtitle: (Math.round(points.current.latitude * 100000) / 100000) + ", " + (Math.round(points.current.longitude * 100000) / 100000),
-		image: "/images/pinStart.png"
+		image: "/images/pinStart.png",
+		rightButton: Ti.UI.iPhone.SystemButton.CONTACT_ADD
 	});
 	
 	var annotationWaypoint = Ti.Map.createAnnotation({
@@ -228,7 +230,8 @@ $.markLocation = function(_event) {
 		latitude: points.destination.latitude,
 		longitude: points.destination.longitude,
 		subtitle: (Math.round(points.destination.latitude * 100000) / 100000) + ", " + (Math.round(points.destination.longitude * 100000) / 100000),
-		image: "/images/pinWaypoint.png"
+		image: "/images/pinWaypoint.png",
+		rightButton: Ti.UI.iPhone.SystemButton.CONTACT_ADD
 	});
 	
 	var vectorRoute = {
@@ -248,11 +251,6 @@ $.markLocation = function(_event) {
 		latitude: points.destination.latitude,
 		longitude: points.destination.longitude
 	};
-	
-	NAVIBRIDGE.addPOI({
-		lat: points.destination.latitude,
-		lon: points.destination.longitude
-	});
 	
 	$.clearButtons();
 	$.toggleMeasurementModal();
@@ -301,7 +299,8 @@ $.determineELT = function() {
 			latitude: waypoint.latitude,
 			longitude: waypoint.longitude,
 			subtitle: (Math.round(waypoint.latitude * 100000) / 100000) + ", " + (Math.round(waypoint.longitude * 100000) / 100000),
-			image: "/images/pinELT.png"
+			image: "/images/pinELT.png",
+			rightButton: Ti.UI.iPhone.SystemButton.CONTACT_ADD
 		});
 		
 		$.map.addAnnotation(annotationELT);
@@ -330,11 +329,6 @@ $.determineELT = function() {
 			latitude: waypoint.latitude,
 			longitude: waypoint.longitude
 		};
-		
-		NAVIBRIDGE.addPOI({
-			lat: waypoint.latitude,
-			lon: waypoint.longitude
-		});
 	}
 	
 	db.close();
