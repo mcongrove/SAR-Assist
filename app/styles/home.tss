@@ -117,4 +117,64 @@
 },
 "#buttonGPSLabel": {
 	color: "#555"
+},
+"#buttonLoadELT": {
+	backgroundImage: "/images/buttonELT.png",
+	height: "40dp",
+	top: "20dp",
+	right: "20dp",
+	left: "20dp",
+	opacity: 0
+},
+"#buttonLoadELTLabel": {
+	width: Ti.UI.FILL,
+	height: "40dp",
+	top: 0,
+	font: {
+		fontSize: "18dp",
+		fontWeight: "bold"
+	},
+	color: "#FFF",
+	textAlign: "center",
+	touchEnabled: false
+},
+"#eltLabel": {
+	top: "10dp",
+	right: "20dp",
+	left: "20dp",
+	font: {
+		fontSize: "12dp",
+		fontWeight: "bold"
+	},
+	color: "#666",
+	opacity: 0
+},
+"#eltCoordinate": {
+	height: "14dp",
+	top: "10dp",
+	left: "20dp",
+	right: "20dp",
+	opacity: 0
+},
+"#eltCoordinateLabel": {
+	width: "85dp",
+	height: "14dp",
+	top: 0,
+	left: 0,
+	font: {
+		fontSize: "12dp",
+		fontWeight: "bold"
+	},
+	color: "#666"
+},
+"#eltCoordinateValue": {
+	width: Ti.UI.SIZE,
+	height: "14dp",
+	top: 0,
+	left: "85dp",
+	font: {
+		fontSize: "12dp",
+		fontWeight: "bold"
+	},
+	color: "#FFF"
 }

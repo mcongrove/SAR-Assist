@@ -1,13 +1,3 @@
-/*
-START:
-28.175475
--80.661
-
-NEXT:
-28.265044
--80.782353
-*/
-
 // Controller dependencies
 var APP = require("core");
 var NAVIBRIDGE = require("ti.navibridge/ti.navibridge");
@@ -17,14 +7,18 @@ var GEO = require("geo");
 $.currentLocation = {
 	latitude: null,
 	longitude: null,
-	bearing: 320 // @TODO: Set this to null
+	bearing: null
 };
 
 $.savedLocation = {
 	latitude: null,
 	longitude: null,
 	bearing: null
-	// @TODO: Do we need distance here?
+};
+
+$.eltLocation = {
+	latitude: null,
+	longitude: null
 };
 
 $.selectedOptions = {
@@ -175,9 +169,9 @@ $.markLocation = function(_event) {
 	$.clearButtons();
 	$.toggleGPSButton(true);
 	
-	// TODO: REMOVE!
+	// TODO: REMOVE! We're faking it!
 	setTimeout(function() {
-		$.currentLocation.bearing = 355;
+		$.fakeIt();
 	}, 1000);
 };
 
@@ -200,30 +194,25 @@ $.toggleGPSButton = function(_state) {
  * Calculate and add the next waypoint to the GPS
  */
 $.addToGPS = function(_event) {
-	Ti.API.info($.savedLocation.bearing);
-	
 	var waypoint = GEO.destinationPoint($.savedLocation, $.selectedOptions.distance);
 	
 	$.toggleGPSButton(false);
 	
-	Ti.API.info(waypoint.latitude + ", " + waypoint.longitude);
+	Ti.API.info("Waypoint: " + waypoint.latitude + ", " + waypoint.longitude);
 	
 	NAVIBRIDGE.addPOI({
 		lat: waypoint.latitude,
 		lon: waypoint.longitude
 	});
-	
-	NAVIBRIDGE.addMultiPOI({
-		poi: [
-			{
-				lat: waypoint.latitude,
-				lon: waypoint.longitude
-			},
-			{
-				lat: waypoint.latitude,
-				lon: waypoint.longitude
-			}
-		]
+};
+
+/**
+ * Calculate and add the ELT location to the GPS
+ */
+$.addELTToGPS = function() {
+	NAVIBRIDGE.addPOI({
+		lat: $.eltLocation.latitude,
+		lon: $.eltLocation.longitude
 	});
 };
 
@@ -237,57 +226,84 @@ $.determineDestination = function() {
 	
 	if(rowCount > 1) {
 		// We have enough data to calcaulte!
-		var alert = Ti.UI.createAlertDialog({
-			title: "Position Determined",
-			message: "Would you like to load the calculated ELT position into your GPS unit?",
-			cancel: 1,
-			buttonNames: [ "Yes", "Cancel" ]
-		});
+		var db = Ti.Database.open("SARA");
 		
-		alert.addEventListener("click", function(_event) {
-			if(_event.index == 0) {
-				var db = Ti.Database.open("SARA");
-				
-				var data = db.execute("SELECT * FROM marks ORDER BY timestamp DESC LIMIT 2;");
-				
-				var temp = [];
+		var data = db.execute("SELECT * FROM marks ORDER BY timestamp DESC LIMIT 2;");
 		
-				while(data.isValidRow()) {
-					// Clean up the data we receive before passing it along
-					temp.push({
-						latitude: data.fieldByName("latitude"),
-						longitude: data.fieldByName("longitude"),
-						bearing: data.fieldByName("bearing")
-					});
-					
-					data.next();
-				}
-				
-				data.close();
-				
-				var waypoint = GEO.intersection(temp[0], temp[1]);
-				
-				Ti.API.info("ELT: " + waypoint.latitude + ", " + waypoint.longitude);
-				
-				NAVIBRIDGE.addPOI({
-					lat: waypoint.latitude,
-					lon: waypoint.longitude
-				});
-			}
-		});
+		var temp = [];
+	
+		while(data.isValidRow()) {
+			// Clean up the data we receive before passing it along
+			temp.push({
+				latitude: data.fieldByName("latitude"),
+				longitude: data.fieldByName("longitude"),
+				bearing: data.fieldByName("bearing")
+			});
+			
+			data.next();
+		}
 		
-		alert.show();
+		data.close();
+		
+		var waypoint = GEO.intersection(temp[0], temp[1]);
+		
+		Ti.API.info("ELT: " + waypoint.latitude + ", " + waypoint.longitude);
+		
+		$.buttonLoadELT.opacity = 1;
+		$.eltLabel.opacity = 1;
+		$.eltCoordinate.opacity = 1;
+		
+		$.eltCoordinateValue.text = (Math.round(waypoint.latitude * 100000) / 100000) + ", " + (Math.round(waypoint.longitude * 100000) / 100000);
+		
+		$.eltLocation = {
+			latitude: waypoint.latitude,
+			longitude: waypoint.longitude
+		};
 	}
 	
 	db.close();
 };
 
 // Event handlers
-Ti.Geolocation.addEventListener("location", $.locationObserver);
-Ti.Geolocation.addEventListener("heading", $.bearingObserver);
+// TODO: Uncomment these
+// Ti.Geolocation.addEventListener("location", $.locationObserver);
+// Ti.Geolocation.addEventListener("heading", $.bearingObserver);
 
 $.buttonMark.addEventListener("click", $.markLocation);
 $.buttonGPS.addEventListener("click", $.addToGPS);
+$.buttonLoadELT.addEventListener("click", $.addELTToGPS);
 
 // Kick off the script
 $.addEventHandlers();
+
+// FAKE IT!
+// TEMPORARY DATA
+// This is necessary because it's hard to demo driving 10 miles!
+// TODO: Remove!
+$.fakeLocations = [
+	{
+		latitude: "28.175475",
+		longitude: "-80.661",
+		bearing: 320
+	},
+	{
+		latitude: "28.265044",
+		longitude: "-80.782353",
+		bearing: 355
+	}
+];
+
+$.fakeItIndex = 0;
+
+$.fakeIt = function() {
+	$.bearingObserver({ heading: { trueHeading: $.fakeLocations[$.fakeItIndex].bearing }});
+	$.locationObserver({ coords: { latitude: $.fakeLocations[$.fakeItIndex].latitude, longitude: $.fakeLocations[$.fakeItIndex].longitude }});
+	
+	if($.fakeItIndex == 1) {
+		$.fakeItIndex = 0;	
+	} else {
+		$.fakeItIndex++;
+	}
+};
+
+$.fakeIt();

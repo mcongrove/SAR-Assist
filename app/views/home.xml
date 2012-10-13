@@ -49,5 +49,16 @@
 				<Label id="buttonGPSLabel" class="buttonActionLabel" text="ADD TO GPS" />
 			</View>
 		</View>
+		
+		<View id="buttonLoadELT">
+			<Label id="buttonLoadELTLabel" text="Proceed to ELT" />
+		</View>
+		
+		<Label id="eltLabel" text="The ELT location has been determined. You can choose to load this position into your GPS by clicking the button above, or add another measurement." />
+		
+		<View id="eltCoordinate">
+			<Label id="eltCoordinateLabel" text="ELT Location:" />
+			<Label id="eltCoordinateValue" />
+		</View>
 	</View>
 </Alloy>
