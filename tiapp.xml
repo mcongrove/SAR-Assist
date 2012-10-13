@@ -21,7 +21,7 @@
     <statusbar-hidden>false</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
-    <analytics>true</analytics>
+    <analytics>false</analytics>
     <guid>7a847bad-162c-4988-ac0f-1cf888321807</guid>
     <property name="ti.ui.defaultunit">system</property>
     <iphone>
@@ -44,8 +44,10 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules><module platform="android" version="1.0">ti.physicalSizeCategory</module>
-</modules>
-<plugins><plugin version="1.0">ti.alloy</plugin>
-</plugins>
+    <modules>
+    	<module platform="android" version="1.0">ti.physicalSizeCategory</module>
+	</modules>
+	<plugins>
+		<plugin version="1.0">ti.alloy</plugin>
+	</plugins>
 </ti:app>

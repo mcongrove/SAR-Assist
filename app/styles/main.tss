@@ -1,0 +1,206 @@
+"#wrapper": {
+	backgroundColor: "#FFF"
+},
+/***********************
+
+	       MAP
+
+************************/
+"#map": {
+	top: "73dp",
+	left: 0,
+	right: 0,
+	bottom: 0,
+	zIndex: 1
+},
+/***********************
+
+	LOCATION OVERLAY
+
+************************/
+"#locationWrapper": {
+	width: "320dp",
+	height: "83dp",
+	top: 0,
+	left: 0,
+	backgroundImage: "/images/backgroundLocation.png",
+	showPagingControl: true,
+	pagingControlColor: "transparent",
+	pagingControlHeight: "40dp",
+	zIndex: 4
+},
+".locationWrapperChild": {
+	width: "320dp",
+	height: "83dp",
+	top: 0,
+	left: 0
+},
+".locationValue": {
+	width: Ti.UI.FILL,
+	height: "26dp",
+	top: "16dp",
+	font: {
+		fontSize: "24dp",
+		fontWeight: "bold"
+	},
+	color: "#FFF"
+},
+".locationLabel": {
+	width: Ti.UI.FILL,
+	height: "10dp",
+	top: "47dp",
+	font: {
+		fontSize: "10dp",
+		fontWeight: "bold"
+	},
+	color: "#330000"
+},
+"#locationCurrentCoordinatesValue": {
+	left: "20dp"
+},
+"#locationCurrentCoordinatesLabel": {
+	left: "20dp"
+},
+"#locationCurrentBearingValue": {
+	right: "20dp",
+	textAlign: "right"
+},
+"#locationCurrentBearingLabel": {
+	right: "20dp",
+	textAlign: "right"
+},
+"#locationNextWaypointCoordinatesValue": {
+	left: "20dp"
+},
+"#locationNextWaypointCoordinatesLabel": {
+	left: "20dp"
+},
+"#locationNextWaypointDistanceValue": {
+	right: "20dp",
+	textAlign: "right"
+},
+"#locationNextWaypointDistanceLabel": {
+	right: "20dp",
+	textAlign: "right"
+},
+"#locationELTCoordinatesValue": {
+	left: "20dp"
+},
+"#locationELTCoordinatesLabel": {
+	left: "20dp"
+},
+"#locationELTDistanceValue": {
+	right: "20dp",
+	textAlign: "right"
+},
+"#locationELTDistanceLabel": {
+	right: "20dp",
+	textAlign: "right"
+},
+/***********************
+
+	   ADD BUTTON
+
+************************/
+"#buttonAddMeasurement": {
+	bottom: "15dp",
+	left: "15dp",
+	width: "40dp",
+	height: "41dp",
+	backgroundImage: "/images/buttonAddMeasurement.png",
+	zIndex: 2
+},
+/***********************
+
+	 MODAL OVERLAY
+
+************************/
+"#modalAddMeasurement": {
+	width: "250dp",
+	height: Ti.UI.FILL,
+	top: "73dp",
+	right: "-250dp",
+	backgroundColor: "#FFF",
+	layout: "vertical",
+	zIndex: 3
+},
+"#labelNewMeasurement": {
+	width: Ti.UI.FILL,
+	height: "15dp",
+	top: "10dp",
+	left: "10dp",
+	font: {
+		fontSize: "15dp",
+		fontWeight: "bold"
+	},
+	color: "#990000"
+},
+".groupLabel": {
+	width: Ti.UI.FILL,
+	height: "10dp",
+	top: "20dp",
+	left: "10dp",
+	font: {
+		fontSize: "10dp",
+		fontWeight: "bold"
+	},
+	color: "#330000"
+},
+".buttonGroup": {
+	height: "41dp",
+	top: "10dp",
+	left: "2dp",
+	right: "10dp",
+	layout: "horizontal"
+},
+".buttonGroupButton": {
+	backgroundImage: "/images/button.png",
+	height: "41dp",
+	width: "71dp",
+	top: 0,
+	left: "8dp"
+},
+".buttonGroupLabel": {
+	width: "71dp",
+	height: "40dp",
+	top: 0,
+	font: {
+		fontSize: "12dp",
+		fontWeight: "bold"
+	},
+	color: "#FFF",
+	textAlign: "center",
+	touchEnabled: false
+},
+"#buttonMark": {
+	backgroundImage: "/images/buttonMark.png",
+	height: "41dp",
+	width: "230dp",
+	top: "20dp",
+	left: "10dp"
+},
+"#buttonMarkLabel": {
+	width: "230dp",
+	height: "41dp",
+	top: 0,
+	left: 0,
+	font: {
+		fontSize: "12dp",
+		fontWeight: "bold"
+	},
+	color: "#FFF",
+	textAlign: "center",
+	touchEnabled: false
+},
+"#labelInstructions": {
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	top: "20dp",
+	left: "15dp",
+	right: "15dp",
+	font: {
+		fontSize: "10dp",
+		fontWeight: "bold"
+	},
+	color: "#BBB"	
+}

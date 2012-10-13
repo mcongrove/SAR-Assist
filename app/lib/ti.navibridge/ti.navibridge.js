@@ -20,6 +20,7 @@ var NAVIBRIDGE = (function() {
 	/** Do not modify these values */
 	var API = {
 		Version: "1.4",
+		Enabled: true,
 		URLBase: "navicon://",
 		Install: {
 			iOS: "http://itunes.apple.com/us/app/navibridge/id498898448?mt=8",
@@ -75,7 +76,7 @@ var NAVIBRIDGE = (function() {
 		if(Ti.Platform.canOpenURL(API.URLBase)) {
 			return true;
 		} else {
-			return true;
+			return false;
 		}
 	};
 
@@ -84,43 +85,49 @@ var NAVIBRIDGE = (function() {
 	 */
 	API.installNavi = function() {
 		Ti.API.trace("NAVIBRIDGE.installNavi()");
-
-		if(!API.checkInstall()) {
-			var alert = Ti.UI.createAlertDialog({
-				title: "NaviBridge Not Installed",
-				message: "This action requires you install the NaviBridge application",
-				buttonNames: [ "OK", "Cancel" ],
-				cancel: 1
-			});
-
-			alert.addEventListener("click", function(_event) {
-				if(_event.index === 0) {
-					var installURL;
-
-					switch(API.Platform) {
-						case "ios":
-							installURL = API.Install.iOS;
-							break;
-						case "android":
-							installURL = API.Install.Android;
-							break;
-						case "mobileweb":
-							Ti.API.error("NaviBridge not available for mobile web");
-							return;
-							break;
+		
+		if(API.Enabled) {
+			if(!API.checkInstall()) {
+				var alert = Ti.UI.createAlertDialog({
+					title: "NaviBridge Not Installed",
+					message: "This action requires you install the NaviBridge application",
+					buttonNames: [ "OK", "Cancel" ],
+					cancel: 1
+				});
+	
+				alert.addEventListener("click", function(_event) {
+					if(_event.index === 0) {
+						var installURL;
+	
+						switch(API.Platform) {
+							case "ios":
+								installURL = API.Install.iOS;
+								break;
+							case "android":
+								installURL = API.Install.Android;
+								break;
+							case "mobileweb":
+								Ti.API.error("NaviBridge not available for mobile web");
+								return;
+								break;
+						}
+	
+						Ti.API.info("Installing NaviBridge application");
+	
+						Ti.Platform.openURL(installURL);
+					} else {
+						Ti.API.info("User aborted NaviBridge installation");
+						
+						API.Enabled = false;
 					}
-
-					Ti.API.info("Installing NaviBridge application");
-
-					Ti.Platform.openURL(installURL);
-				} else {
-					Ti.API.info("User aborted NaviBridge installation");
-				}
-			});
-
-			alert.show();
+				});
+	
+				alert.show();
+			} else {
+				Ti.API.info("NaviBridge is already installed");
+			}
 		} else {
-			Ti.API.info("NaviBridge is already installed");
+			Ti.API.info("User already declined NaviBridge install");
 		}
 	};
 

@@ -6,6 +6,30 @@
 var Geo = {};
 
 /**
+ * Returns the distance from this point to the supplied point, in km 
+ * (using Haversine formula)
+ *
+ * @param   {Object} pointA: First point {latitude, longitude, bearing}
+ * @param   {Object} pointB: Second point {latitude, longitude, bearing}
+ * @returns {Number} Distance in MI between this point and destination point
+ */
+Geo.distanceBetween = function(pointA, pointB) {
+	pointA.latitude = typeof(pointA.latitude) == "number" ? pointA.latitude : typeof(pointA.latitude) == "string" && pointA.latitude.trim() != "" ? +pointA.latitude : NaN;
+	pointB.latitude = typeof(pointB.latitude) == "number" ? pointB.latitude : typeof(pointB.latitude) == "string" && pointB.latitude.trim() != "" ? +pointB.latitude : NaN;
+	pointA.longitude = typeof(pointA.longitude) == "number" ? pointA.longitude : typeof(pointA.longitude) == "string" && pointA.longitude.trim() != "" ? +pointA.longitude : NaN;
+	pointB.longitude = typeof(pointB.longitude) == "number" ? pointB.longitude : typeof(pointB.longitude) == "string" && pointB.longitude.trim() != "" ? +pointB.longitude : NaN;
+	
+	var R = 6371; // km
+	var dLat = (pointB.latitude - pointA.latitude).toRad();
+	var dLon = (pointB.longitude - pointA.longitude).toRad(); 
+	var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(pointA.latitude.toRad()) * Math.cos(pointB.latitude.toRad()) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	var d = R * c;
+	
+	return d / 1.609344; // mi
+};
+
+/**
  * Returns the point of intersection of two paths defined by point and bearing (see http://williams.best.vwh.net/avform.htm#Intersection)
  * @param   {Object} pointA: First point {latitude, longitude, bearing}
  * @param   {Object} pointB: Second point {latitude, longitude, bearing}

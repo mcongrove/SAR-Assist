@@ -1,0 +1,75 @@
+<Alloy>
+	<View id="wrapper">
+		<View ns="Ti.Map" id="map" />
+		
+		<View id="buttonAddMeasurement" />
+		
+		<View id="modalAddMeasurement">
+			<Label id="labelNewMeasurement" text="NEW MEASUREMENT" />
+			
+			<Label id="labelPrecision" class="groupLabel" text="SIGNAL STRENGTH / PRECISION" />
+			
+			<View id="buttonGroupPrecision" class="buttonGroup">
+				<View id="buttonPrecisionLow" index="0" class="buttonGroupButton">
+					<Label text="LOW" class="buttonGroupLabel" />
+				</View>
+				
+				<View id="buttonPrecisionMedium" index="1" class="buttonGroupButton">
+					<Label text="MED" class="buttonGroupLabel" />
+				</View>
+				
+				<View id="buttonPrecisionHigh" index="2" class="buttonGroupButton">
+					<Label text="HIGH" class="buttonGroupLabel" />
+				</View>
+			</View>
+			
+			<Label id="labelDistance" class="groupLabel" text="DISTANCE TO NEXT MEASUREMENT" />
+			
+			<View id="buttonGroupDistance" class="buttonGroup">
+				<View id="buttonDistance1" index="0" class="buttonGroupButton">
+					<Label text="1MI" class="buttonGroupLabel" />
+				</View>
+				
+				<View id="buttonDistance5" index="1" class="buttonGroupButton">
+					<Label text="5MI" class="buttonGroupLabel" />
+				</View>
+				
+				<View id="buttonDistance10" index="2" class="buttonGroupButton">
+					<Label text="10MI" class="buttonGroupLabel" />
+				</View>
+			</View>
+			
+			<View id="buttonMark">
+				<Label id="buttonMarkLabel" text="MARK LOCATION & BEARING" />
+			</View>
+			
+			<Label id="labelInstructions" text="Instructions:\n1. Perform normal DF functions.\n2. When the signal has been acquired, mark the signal strength and how far you wish to travel until your next measurement.\n3. Point your mobile device in the direction of the signal and press the 'Mark Location & Bearing' button." />
+		</View>
+		
+		<ScrollableView id="locationWrapper">
+			<View id="locationCurrent" class="locationWrapperChild">
+				<Label id="locationCurrentCoordinatesValue" class="locationValue" text="" />
+				<Label id="locationCurrentBearingValue" class="locationValue" text="" />
+				
+				<Label id="locationCurrentCoordinatesLabel" class="locationLabel" text="CURRENT LOCATION" />
+				<Label id="locationCurrentBearingLabel" class="locationLabel" text="CURRENT BEARING" />
+			</View>
+			
+			<View id="locationNextWaypoint" class="locationWrapperChild">
+				<Label id="locationNextWaypointCoordinatesValue" class="locationValue" text="" />
+				<Label id="locationNextWaypointDistanceValue" class="locationValue" text="" />
+				
+				<Label id="locationNextWaypointCoordinatesLabel" class="locationLabel" text="NEXT WAYPOINT" />
+				<Label id="locationNextWaypointDistanceLabel" class="locationLabel" text="DISTANCE" />
+			</View>
+			
+			<View id="locationELT" class="locationWrapperChild">
+				<Label id="locationELTCoordinatesValue" class="locationValue" text="" />
+				<Label id="locationELTDistanceValue" class="locationValue" text="" />
+				
+				<Label id="locationELTCoordinatesLabel" class="locationLabel" text="ELT LOCATION" />
+				<Label id="locationELTDistanceLabel" class="locationLabel" text="DISTANCE" />
+			</View>
+		</ScrollableView>
+	</View>
+</Alloy>

@@ -12,5 +12,5 @@ APP.init();
 
 // The initial screen to show
 APP.handleNavigation({
-	controller: "home"
+	controller: "main"
 });
