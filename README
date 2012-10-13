@@ -10,3 +10,22 @@ Steps to get set up:
 Currently tested on TIMOB 2.1.3GA, iPhone-only (6.X).
 
 Here's a screenshot of the app: https://raw.github.com/mcongrove/SAR-Assist/master/screenshot.png
+
+!!! IMPORTANT IMPORTANT IMPORTANT !!!
+!!! IMPORTANT IMPORTANT IMPORTANT !!!
+!!! IMPORTANT IMPORTANT IMPORTANT !!!
+
+Because it's unrealistic to drive 10-20 miles to demo this unit, it utilizes FAKE DATA INPUT! You can see where this occurs as the bottom of the "home.js" controller.
+
+Please follow these steps to demo the application:
+
+(1) Open the application, it will place you in Melbourne, FL facing north-east
+(2) Select the following options: LOW, 10MI
+(3) Press MARK
+(4) The app will calculate your next waypoint (which you can add to the Denso unit by clicking ADD TO GPS)
+(5) The app will now place you 10 miles north-east, facing north, just a little bit south of the waypoint
+(6) Select the following options: MED, 1MI
+(7) Press MARK
+(8) The app will calculate your next waypoint (which you can add to the Denso unit by clicking ADD TO GPS)
+(9) The app recognizes you have enough data to determine the distress signal location, about 2 miles north of your current position; it shows the location coordinates
+(10) Press "PROCEED TO ELT" to load the location of the distress signal into your GPS
