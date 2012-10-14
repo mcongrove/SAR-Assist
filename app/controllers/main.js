@@ -247,6 +247,8 @@ $.markLocation = function(_event) {
 	$.locationNextWaypointCoordinatesValue.text = (Math.round(points.destination.latitude * 1000) / 1000) + ", " + (Math.round(points.destination.longitude * 1000) / 1000);
 	$.locationNextWaypointDistanceValue.text = (Math.round(GEO.distanceBetween(points.current, points.destination) * 100) / 100) + "MI";
 	
+	$.locationWrapper.scrollToView(1);
+	
 	$.waypointLocation = {
 		latitude: points.destination.latitude,
 		longitude: points.destination.longitude

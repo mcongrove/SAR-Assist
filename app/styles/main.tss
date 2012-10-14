@@ -105,9 +105,9 @@
 ************************/
 "#buttonAddMeasurement": {
 	bottom: "15dp",
-	left: "15dp",
-	width: "40dp",
-	height: "41dp",
+	left: "18dp",
+	width: "33dp",
+	height: "35dp",
 	backgroundImage: "/images/buttonAddMeasurement.png",
 	zIndex: 2
 },
