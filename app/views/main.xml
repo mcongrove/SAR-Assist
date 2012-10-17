@@ -60,7 +60,7 @@
 				<Label id="locationNextWaypointDistanceValue" class="locationValue" text="" />
 				
 				<Label id="locationNextWaypointCoordinatesLabel" class="locationLabel" text="NEXT WAYPOINT" />
-				<Label id="locationNextWaypointDistanceLabel" class="locationLabel" text="DISTANCE" />
+				<Label id="locationNextWaypointDistanceLabel" class="locationLabel" text="DISTANCE (MI)" />
 			</View>
 			
 			<View id="locationELT" class="locationWrapperChild">
@@ -68,7 +68,7 @@
 				<Label id="locationELTDistanceValue" class="locationValue" text="" />
 				
 				<Label id="locationELTCoordinatesLabel" class="locationLabel" text="ELT LOCATION" />
-				<Label id="locationELTDistanceLabel" class="locationLabel" text="DISTANCE" />
+				<Label id="locationELTDistanceLabel" class="locationLabel" text="DISTANCE (MI)" />
 			</View>
 		</ScrollableView>
 	</View>

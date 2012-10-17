@@ -85,11 +85,11 @@ $.locationObserver = function(_event) {
 	}
 	
 	if($.waypointLocation.latitude !== null) {
-		$.locationNextWaypointDistanceValue.text = (Math.round(GEO.distanceBetween($.currentLocation, $.waypointLocation) * 100) / 100) + "MI";
+		$.locationNextWaypointDistanceValue.text = (Math.round(GEO.distanceBetween($.currentLocation, $.waypointLocation) * 100) / 100);
 	}
 	
 	if($.eltLocation.latitude !== null) {
-		$.locationELTDistanceValue.text = (Math.round(GEO.distanceBetween($.currentLocation, $.eltLocation) * 100) / 100) + "MI";
+		$.locationELTDistanceValue.text = (Math.round(GEO.distanceBetween($.currentLocation, $.eltLocation) * 100) / 100);
 	}
 };
 
@@ -245,7 +245,7 @@ $.markLocation = function(_event) {
 	$.map.addRoute(vectorRoute);
 	
 	$.locationNextWaypointCoordinatesValue.text = (Math.round(points.destination.latitude * 1000) / 1000) + ", " + (Math.round(points.destination.longitude * 1000) / 1000);
-	$.locationNextWaypointDistanceValue.text = (Math.round(GEO.distanceBetween(points.current, points.destination) * 100) / 100) + "MI";
+	$.locationNextWaypointDistanceValue.text = (Math.round(GEO.distanceBetween(points.current, points.destination) * 100) / 100);
 	
 	$.locationWrapper.scrollToView(1);
 	
@@ -315,7 +315,7 @@ $.determineELT = function() {
 		});
 		
 		$.locationELTCoordinatesValue.text = (Math.round(waypoint.latitude * 1000) / 1000) + ", " + (Math.round(waypoint.longitude * 1000) / 1000);
-		$.locationELTDistanceValue.text = (Math.round(GEO.distanceBetween($.currentLocation, waypoint) * 100) / 100) + "MI";
+		$.locationELTDistanceValue.text = (Math.round(GEO.distanceBetween($.currentLocation, waypoint) * 100) / 100);
 		
 		$.locationWrapper.scrollToView(2);
 		
